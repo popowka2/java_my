@@ -23,10 +23,6 @@ public class GropCreationTests {
         System.setProperty("webdriver.firefox.marionette", "./geckodriver.exe");
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-    }
-    
-    @Test
-    public void GropCreationTests() {
         wd.get("http://localhost/addressbook/");
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
@@ -35,6 +31,11 @@ public class GropCreationTests {
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys("secret");
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
+    }
+    
+    @Test
+    public void testGropCreation() {
+
         wd.findElement(By.cssSelector("html")).click();
         wd.findElement(By.linkText("groups")).click();
         wd.findElement(By.cssSelector("html")).click();
