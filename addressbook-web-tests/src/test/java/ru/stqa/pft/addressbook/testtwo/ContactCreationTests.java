@@ -10,8 +10,8 @@ public class ContactCreationTests extends TestBaseTwo {
     public void testContactCreation() {
 
 
-        app.fillContactForm(new ContactData("Павел", "Страхов", "Тестовая организация", "+79108328979"));
-        app.submitContactCreation();
+        app.getContactHelper().fillContactForm(new ContactData("Павел", "Страхов", "Тестовая организация", "+79108328979"));
+        app.getContactHelper().submitContactCreation();
     }
 
 }

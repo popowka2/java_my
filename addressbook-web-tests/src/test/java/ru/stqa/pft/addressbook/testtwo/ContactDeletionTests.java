@@ -7,10 +7,10 @@ public class ContactDeletionTests extends TestBaseTwo {
     @Test
     public void ContactDeletionTests() {
 
-        app.submitHome();
-        app.selectContact();
-        app.deleteSelectedContacts();
-        app.alertAccept();
+        app.getNsvigationHelperTwo().submitHome();
+        app.getContactHelper().selectContact();
+        app.getContactHelper().deleteSelectedContacts();
+        app.getContactHelper().alertAccept();
 
     }
 
