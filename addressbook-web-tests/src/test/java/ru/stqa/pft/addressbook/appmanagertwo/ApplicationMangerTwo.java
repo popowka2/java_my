@@ -1,14 +1,13 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.appmanagertwo;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import ru.stqa.pft.addressbook.modeltwo.ContactData;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestBaseTwo {
+public class ApplicationMangerTwo {
     FirefoxDriver wd;
 
     public static boolean isAlertPresent(FirefoxDriver wd) {
@@ -20,8 +19,7 @@ public class TestBaseTwo {
         }
     }
 
-    @BeforeMethod
-    public void setUp() throws Exception {
+    public void init() {
         System.setProperty("webdriver.firefox.marionette", "./geckodriver.exe");
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
@@ -29,7 +27,7 @@ public class TestBaseTwo {
         login("admin", "secret");
     }
 
-    private void login(String username, String passwword) {
+    public void login(String username, String passwword) {
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
         wd.findElement(By.name("user")).sendKeys(username);
@@ -39,13 +37,11 @@ public class TestBaseTwo {
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
     }
 
-    protected void submitContactCreation() {
+    public void submitContactCreation() {
         wd.findElement(By.name("submit")).click();
     }
 
-
-
-    protected void fillContactForm(ContactData contactData) {
+    public void fillContactForm(ContactData contactData) {
         wd.findElement(By.name("firstname")).click();
         wd.findElement(By.name("firstname")).clear();
         wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
@@ -60,24 +56,23 @@ public class TestBaseTwo {
         wd.findElement(By.name("mobile")).sendKeys(contactData.getMobile());
     }
 
-    @AfterMethod
-    public void tearDown() {
+    public void stop() {
         wd.quit();
     }
 
-    protected void alertAccept() {
+    public void alertAccept() {
         wd.switchTo().alert().accept();
     }
 
-    protected void deleteSelectedContacts() {
+    public void deleteSelectedContacts() {
         wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
     }
 
-    protected void selectContact() {
+    public void selectContact() {
         wd.findElement(By.name("selected[]")).click();
     }
 
-    protected void submitHome() {
+    public void submitHome() {
         wd.findElement(By.linkText("home")).click();
     }
 }
